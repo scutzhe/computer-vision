@@ -1,8 +1,9 @@
 // https://blog.csdn.net/weixin_40647819/article/details/92719036 数字图像处理基础算法
-#include <opencv.hpp>
-#include <opencv2/core.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
+#include <stdio.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
  
 void MeanFilater(cv::Mat& src,cv::Mat& dst,cv::Size wsize){
 	//图像边界扩充:窗口的半径
@@ -37,7 +38,7 @@ void MeanFilater(cv::Mat& src,cv::Mat& dst,cv::Size wsize){
 }
  
 int main(){
-	cv::Mat src = cv::imread("I:\\Learning-and-Practice\\2019Change\\Image process algorithm\\Img\\Fig0334(a)(hubble-original).tif");
+	cv::Mat src = cv::imread("test.jpg");
 	if (src.empty()){
 		return -1;
 	}
