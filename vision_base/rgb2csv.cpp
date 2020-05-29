@@ -1,8 +1,8 @@
 // https://blog.csdn.net/weixin_40647819/article/details/92660320
 #include <iostream>
-#include <opencv2/core.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 using namespace cv;
  
 Mat RGB2HSV(Mat src) {
@@ -92,7 +92,7 @@ Mat HSV2RGB(Mat src) {
  
  
 int main(){
-	cv::Mat src = cv::imread("I:\\Learning-and-Practice\\2019Change\\Image process algorithm\\Img\\lena.JPG");
+	cv::Mat src = cv::imread("test.jpg");
  
 	if (src.empty()){
 		return -1;
