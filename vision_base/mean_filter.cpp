@@ -4,7 +4,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
- 
+
 void MeanFilater(cv::Mat& src,cv::Mat& dst,cv::Size wsize){
 	//图像边界扩充:窗口的半径
 	if (wsize.height % 2 == 0 || wsize.width % 2 == 0){
@@ -13,7 +13,9 @@ void MeanFilater(cv::Mat& src,cv::Mat& dst,cv::Size wsize){
 	}
 	int hh = (wsize.height - 1) / 2;
 	int hw = (wsize.width - 1) / 2;
-	cv::Mat Newsrc;
+	cv::Mat Newsrc; //构造图像
+    
+
 	cv::copyMakeBorder(src, Newsrc, hh, hh, hw, hw, cv::BORDER_REFLECT_101);//以边缘为轴，对称
 	dst=cv::Mat::zeros(src.size(),src.type());
  
@@ -25,10 +27,10 @@ void MeanFilater(cv::Mat& src,cv::Mat& dst,cv::Size wsize){
  
 			for (int r = i - hh; r <= i + hh; ++r){
 				for (int c = j - hw; c <= j + hw;++c){
-					sum = Newsrc.at<uchar>(r, c) + sum;
+					sum = Newsrc.at<uchar>(r, c) + sum; //at()像素操作,表示某个通道中(r,c)位置的像素值
 				}
 			}
-			mean = sum / (wsize.area());
+			mean = sum / (wsize.area()); //template<typename _Tp> inline _Tp Size_<_Tp>::area() const { return width*height; }
 			dst.at<uchar>(i-hh,j-hw)=mean;
 			sum = 0;
 			mean = 0;
@@ -59,6 +61,6 @@ int main(){
 	cv::imshow("src", src);
 	cv::namedWindow("dst");
 	cv::imshow("dst", dst);
-	cv::imwrite("I:\\Learning-and-Practice\\2019Change\\Image process algorithm\\Image Filtering\\MeanFilter\\Mean_hubble.jpg",dst);
+	cv::imwrite("mean_filter.jpg",dst);
 	cv::waitKey(0);
 }
